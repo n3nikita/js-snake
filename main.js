@@ -2,10 +2,9 @@ $(document).ready(function () {
     var size = 50;
     var arr = [];
     var direction = 'r';
-    var snakeSize = 3;
+    var snakeSize = 5;
     var field = [];
-
-    Init();
+    var gameSpeed = 10;
 
     $('#snakeGround').css({
         'width': size * 10,
@@ -24,14 +23,14 @@ $(document).ready(function () {
     });
 
     
-    function Init() { 
+    (function Init() { 
         for(var i = snakeSize - 1; i >= 0; i--){
             arr.push({x: i, y: 0});
         }
         fill();
 
-        setInterval(() => {moveSnake();}, 1000/15);
-    }
+        setInterval(() => {moveSnake();}, 1000 / gameSpeed);
+    })();
 
     function fill(){
         $('#snakeGround').html('');
