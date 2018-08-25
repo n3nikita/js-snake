@@ -1,10 +1,11 @@
 $(document).ready(function () { 
-    var size = 50;
+    var size = 70;
     var arr = [];
     var direction = 'r';
     var snakeSize = 5;
     var field = [];
     var gameSpeed = 10;
+    var food = {};
 
     $('#snakeGround').css({
         'width': size * 10,
@@ -43,6 +44,7 @@ $(document).ready(function () {
                 field[i][j] = $("<div>", { 'class': 'pixel' }).appendTo(row);                
             }
         }
+        placeFood();
     }
 
     function drawSnake(){
@@ -58,29 +60,38 @@ $(document).ready(function () {
         var sy = arr[0].y;
 
         switch(direction){
-            case 'r': {
+            case 'r': 
                 sx++;
                 break;
-            }
-            case 'd': {
+            case 'd': 
                 sy--;
                 break;
-            }
-            case 'l': {
+            case 'l': 
                 sx--;
                 break;
-            }
-            case 'u': {
+            case 'u': 
                 sy++;
                 break;
-            }
         }
 
         var tail = arr.pop();
+        if(sx == food.x && sy == food.y){
+            snakeSize++;
+            arr.push({x: tail.x, y: tail.y});
+            $(".pixel").removeClass('food');
+            placeFood();
+        }
+
         tail.x = sx;
         tail.y = sy;
         arr.unshift(tail);
 
+        //placeFood();
         drawSnake();
+    }
+
+    function placeFood(){
+        food = {x: Math.floor(Math.random() * size), y: Math.floor(Math.random() * size)};
+        field[food.y][food.x].addClass('food');
     }
 });
