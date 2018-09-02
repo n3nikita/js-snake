@@ -1,3 +1,6 @@
+// TODO: Add Pause/GameOver animation
+// TODO: Fix food spawn, don't spawn food on the snake
+
 $(document).ready(function () { 
 
     var arr, 
