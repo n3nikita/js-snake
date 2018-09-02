@@ -6,6 +6,7 @@ $(document).ready(function () {
     var field = [];
     var gameSpeed = 10;
     var food = {};
+    var pause = false;
 
     $('#snakeGround').css({
         'width': size * 10,
@@ -21,6 +22,8 @@ $(document).ready(function () {
             direction = 'l';
         else if(e.which === 39)
             direction = 'r';
+        else if(e.which === 32)
+            pause = !pause;
     });
 
     
@@ -30,7 +33,11 @@ $(document).ready(function () {
         }
         fill();
 
-        setInterval(() => {moveSnake();}, 1000 / gameSpeed);
+        
+        setInterval(() => {
+            if(!pause)
+                moveSnake();
+        }, 1000 / gameSpeed);
     })();
 
     function fill(){
@@ -75,6 +82,8 @@ $(document).ready(function () {
         }
 
         var tail = arr.pop();
+
+        // eat food
         if(sx == food.x && sy == food.y){
             snakeSize++;
             arr.push({x: tail.x, y: tail.y});
@@ -82,11 +91,23 @@ $(document).ready(function () {
             placeFood();
         }
 
+        // go thought the walls
+        if(sx >= 70)
+            sx = 0;
+
+        if(sx < 0)
+            sx = 69;
+        
+        if(sy >= 70)
+            sy = 0;
+        
+        if(sy < 0)
+            sy = 69;
+        
+
         tail.x = sx;
         tail.y = sy;
         arr.unshift(tail);
-
-        //placeFood();
         drawSnake();
     }
 
