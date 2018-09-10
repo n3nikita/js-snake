@@ -17,7 +17,7 @@ body {
 
 .row{
     width: 100%;
-    height: 100%;
+    height: 100%; 
     display: flex;
 }
 
@@ -25,15 +25,14 @@ body {
     background: whitesmoke;
     width: 100%;
     height: 100%;
-    
     display: table-cell;
 }
 
 .snake{
-    background: red;
+    background: #ff5454;
 }
 
 .food{
-    background: green;
+    background: #278827;
 }
 
