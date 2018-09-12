@@ -1,9 +1,8 @@
 // TODO: Add Pause/GameOver animation
-// TODO: Fix food spawn, don't spawn food on the snake
 // TODO: Display score
 // TODO: Spawn snake at random position
 
-const gameSpeed = 20, size = 80;
+const gameSpeed = 20, size = 20;
 
 let arr, direction, snakeSize, pause, interval, score;
 let field = [];
@@ -130,8 +129,23 @@ function moveSnake(){
 }
 
 function placeFood(){
-    food = {x: Math.floor(Math.random() * size), y: Math.floor(Math.random() * size)};
+    do {
+        food = getRandomFoodPlace();
+    } while (foodOnTheSnake(food));
     field[food.y][food.x].addClass('food');
+}
+
+function getRandomFoodPlace(){
+    return {x: Math.floor(Math.random() * size), y: Math.floor(Math.random() * size)};
+}
+
+function foodOnTheSnake(pos){
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i].x === pos.x && arr[i].y === pos.y){
+            return true;
+        }
+    }
+    return false;
 }
 
 function checkGameOver(head){
