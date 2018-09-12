@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 body {
@@ -36,3 +37,10 @@ body {
     background: #278827;
 }
 
+.score {
+    font-size: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 30px;
+}

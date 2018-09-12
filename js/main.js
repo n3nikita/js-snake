@@ -1,10 +1,9 @@
 // TODO: Add Pause/GameOver animation
 // TODO: Display score
-// TODO: Spawn snake at random position
 
 const gameSpeed = 20, size = 80;
 
-let arr, direction, snakeSize, pause, interval, score;
+let arr, direction, snakeSize, pause, interval, score, scoreDiv;
 let field = [];
 let food = {};
 
@@ -15,6 +14,8 @@ $(document).ready(function () {
         'width': size * 10,
         'height': size * 10
     });
+
+    scoreDiv = $('.score');
 
     $('html').keydown(function(e){
         if(e.which === 40 && direction !== 'd')
@@ -38,6 +39,7 @@ function startGame() {
     snakeSize = 10, score = 0;
     direction = 'r';
     field = [];
+    scoreDiv.html(0);
 
     let randomXPos = Math.floor(Math.random() * size);
     let randomYpos = Math.floor(Math.random() * size);
@@ -114,6 +116,7 @@ function moveSnake(){
         arr.push({ x: tail.x, y: tail.y });
         $(".pixel").removeClass('food');
         score++;
+        scoreDiv.text(score);
         console.log(score);
         placeFood();
     }
