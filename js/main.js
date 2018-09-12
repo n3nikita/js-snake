@@ -2,7 +2,7 @@
 // TODO: Display score
 // TODO: Spawn snake at random position
 
-const gameSpeed = 20, size = 20;
+const gameSpeed = 20, size = 80;
 
 let arr, direction, snakeSize, pause, interval, score;
 let field = [];
@@ -38,8 +38,11 @@ function startGame() {
     snakeSize = 10, score = 0;
     direction = 'r';
     field = [];
+
+    let randomXPos = Math.floor(Math.random() * size);
+    let randomYpos = Math.floor(Math.random() * size);
     for(var i = snakeSize - 1; i >= 0; i--){
-        arr.push({x: i, y: 0});
+        arr.push({x: i + randomXPos, y: randomYpos});
     }
     fill();
 
@@ -92,16 +95,6 @@ function moveSnake(){
 
     let tail = arr.pop();
 
-    // eat food
-    if(sx == food.x && sy == food.y){
-        snakeSize++;
-        arr.push({x: tail.x, y: tail.y});
-        $(".pixel").removeClass('food');
-        score++;
-        console.log(score);
-        placeFood();
-    }
-
     // go thought the walls
     if(sx >= field.length)
         sx = 0;
@@ -114,8 +107,17 @@ function moveSnake(){
     
     if(sy < 0)
         sy = field.length - 1;
-    
 
+    // eat food
+    if (sx == food.x && sy == food.y) {
+        snakeSize++;
+        arr.push({ x: tail.x, y: tail.y });
+        $(".pixel").removeClass('food');
+        score++;
+        console.log(score);
+        placeFood();
+    }
+    
     tail.x = sx;
     tail.y = sy;
     
