@@ -1,7 +1,9 @@
 // TODO: Add Pause/GameOver animation
-// TODO: Display score
 
-const gameSpeed = 20, size = 80;
+let settings = {
+    speed: 20,
+    size: 80
+};
 
 let arr, direction, snakeSize, pause, interval, score, scoreDiv;
 let field = [];
@@ -11,8 +13,8 @@ let food = {};
 $(document).ready(function () { 
 
     $('#snakeGround').css({
-        'width': size * 10,
-        'height': size * 10
+        'width': settings.size * 10,
+        'height': settings.size * 10
     });
 
     scoreDiv = $('.score');
@@ -52,7 +54,7 @@ function startGame() {
     interval = setInterval(() => {
         if(!pause)
             moveSnake();
-    }, 1000 / gameSpeed);
+    }, 1000 / settings.speed);
 }
 
 function fill(){
