@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
+    color: white;
 }
 
 body {
@@ -9,11 +10,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: black;
 }
 
 #snakeGround {
     display: flex;
     flex-direction: column;
+    border: 1px solid red;
 }
 
 .row{
@@ -23,18 +26,18 @@ body {
 }
 
 .pixel{
-    background: whitesmoke;
+    background: black;
     width: 100%;
     height: 100%;
     display: table-cell;
 }
 
 .snake{
-    background: #ff5454;
+    background: white;
 }
 
 .food{
-    background: #278827;
+    background: red;
 }
 
 .score {
@@ -44,3 +47,27 @@ body {
     left: 0;
     margin: 30px;
 }
+
+.info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 30px;
+}
+
+.pause {
+    position: absolute;
+    font-size: 40px; 
+    animation: pulse 1s infinite;
+    display: none;
+}
+
+@keyframes pulse {
+    0% {
+      color: black;
+    }
+    100% {
+      color: white;
+    }
+  }
+  
