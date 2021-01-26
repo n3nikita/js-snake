@@ -1,4 +1,4 @@
 # Snake
 JavaScript "Snake" game.
 
-https://mrbandaruk.github.io/js-snake/
+https://n3nikita.github.io/js-snake/
